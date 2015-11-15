@@ -59,9 +59,30 @@ describe("MacroResult", function() {
       res.count.must.be.eq(1);
     });
 
-    it("#getNumberOf()", function() {
-      res.getNumberOf(ResultState.OK).must.be.eq(1);
-    });
   });
 
+  it("#setAsIgnored()", function() {
+    var res = new MacroResult(undefined, "test", {});
+    res.setAsIgnored();
+    res.state.must.be.same(ResultState.IGNORED);
+  });
+
+  describe("#getNumberOf()", function() {
+    it("getNumberOf() with macro not ignored", function() {
+      var res = new MacroResult(undefined, "test", {});
+      new SimpleTaskResult(res, "test", {}).setResult(ResultState.OK, undefined, 5, 11);
+      
+      res.getNumberOf(ResultState.OK).must.be.eq(1);
+      res.getNumberOf(ResultState.FAILED).must.be.eq(0);
+      res.getNumberOf(ResultState.IGNORED).must.be.eq(0);
+    });
+
+    it("getNumberOf() with macro ignored", function() {
+      var res = new MacroResult(undefined, "test", {});
+      res.setAsIgnored();
+      res.getNumberOf(ResultState.OK).must.be.eq(0);
+      res.getNumberOf(ResultState.FAILED).must.be.eq(0);
+      res.getNumberOf(ResultState.IGNORED).must.be.eq(1);
+    });
+  });
 });
