@@ -12,18 +12,10 @@ CompositeTaskResult = (function (_Result) {_inherits(CompositeTaskResult, _Resul
 
 
 
-  function CompositeTaskResult(parent, title, task) {_classCallCheck(this, CompositeTaskResult);
-    _get(Object.getPrototypeOf(CompositeTaskResult.prototype), "constructor", this).call(this, parent, title, task);
+  function CompositeTaskResult(parent, title, task, state) {_classCallCheck(this, CompositeTaskResult);
+    _get(Object.getPrototypeOf(CompositeTaskResult.prototype), "constructor", this).call(this, parent, title, task, state);
 
-    Object.defineProperty(this, "results", { value: new _Results2["default"]() });
-    Object.defineProperty(this, "_state", { value: undefined, writable: true });}_createClass(CompositeTaskResult, [{ key: "setAsIgnored", value: 
-
-
-
-
-
-    function setAsIgnored() {
-      this._state = _ResultState2["default"].IGNORED;} }, { key: "add", value: 
+    Object.defineProperty(this, "results", { value: new _Results2["default"]() });}_createClass(CompositeTaskResult, [{ key: "add", value: 
 
 
 

@@ -5,6 +5,7 @@
 
 
 
+
 Result = (function () {
 
 
@@ -13,10 +14,12 @@ Result = (function () {
 
 
 
-  function Result(parent, title, task) {_classCallCheck(this, Result);
+
+  function Result(parent, title, task, state) {_classCallCheck(this, Result);
     Object.defineProperty(this, "parent", { value: parent, enumerable: true });
     Object.defineProperty(this, "title", { value: title, enumerable: true });
     Object.defineProperty(this, "task", { value: task, enumerable: true });
+    Object.defineProperty(this, "_state", { value: state, writable: true });
 
     if (parent) parent.add(this);}_createClass(Result, [{ key: "hasParent", value: 
 
@@ -64,6 +67,5 @@ Result = (function () {
 
 
 
-
     function get() {
-      throw new Error("Abstract property.");} }]);return Result;})();exports["default"] = Result;module.exports = exports["default"];
+      return this._state;} }]);return Result;})();exports["default"] = Result;module.exports = exports["default"];

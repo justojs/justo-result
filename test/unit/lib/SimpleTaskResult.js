@@ -19,6 +19,17 @@ describe("SimpleTaskResult", function() {
       });
     });
 
+    it("constructor(parent, title, task, state) - orphan", function() {
+      new SimpleTaskResult(undefined, "test", task, ResultState.IGNORED).must.have({
+        parent: undefined,
+        title: "test",
+        task: task,
+        state: ResultState.IGNORED,
+        error: undefined,
+        time: undefined
+      });
+    });
+
     it("#constructor(parent, title, task) - child", function() {
       const parent = new MacroResult(undefined, "parent", {});
       const child = new SimpleTaskResult(parent, "child", task);
@@ -28,6 +39,20 @@ describe("SimpleTaskResult", function() {
         title: "child",
         task: task,
         state: undefined,
+        error: undefined,
+        time: undefined
+      });
+    });
+
+    it("#constructor(parent, title, task, state) - child", function() {
+      const parent = new MacroResult(undefined, "parent", {});
+      const child = new SimpleTaskResult(parent, "child", task, ResultState.IGNORED);
+
+      child.must.have({
+        parent: parent,
+        title: "child",
+        task: task,
+        state: ResultState.IGNORED,
         error: undefined,
         time: undefined
       });

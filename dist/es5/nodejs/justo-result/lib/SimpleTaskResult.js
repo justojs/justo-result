@@ -5,19 +5,11 @@
 
 
 SimpleTaskResult = (function (_Result) {_inherits(SimpleTaskResult, _Result);
-  function SimpleTaskResult(parent, title, task) {_classCallCheck(this, SimpleTaskResult);
-    _get(Object.getPrototypeOf(SimpleTaskResult.prototype), "constructor", this).call(this, parent, title, task);
+  function SimpleTaskResult(parent, title, task, state) {_classCallCheck(this, SimpleTaskResult);
+    _get(Object.getPrototypeOf(SimpleTaskResult.prototype), "constructor", this).call(this, parent, title, task, state);
 
-    Object.defineProperty(this, "_state", { value: undefined, writable: true });
     Object.defineProperty(this, "_time", { value: undefined, writable: true });
     Object.defineProperty(this, "_error", { value: undefined, writable: true });}_createClass(SimpleTaskResult, [{ key: "setResult", value: 
-
-
-
-
-
-
-
 
 
 
@@ -45,4 +37,4 @@ SimpleTaskResult = (function (_Result) {_inherits(SimpleTaskResult, _Result);
     function setResult(state, error, start, end) {
       this._state = state;
       this._time = end - start;
-      this._error = error;} }, { key: "state", get: function get() {return this._state;} }, { key: "time", get: function get() {return this._time;} }, { key: "error", get: function get() {return this._error;} }]);return SimpleTaskResult;})(_Result3["default"]);exports["default"] = SimpleTaskResult;module.exports = exports["default"];
+      this._error = error;} }, { key: "time", get: function get() {return this._time;} }, { key: "error", get: function get() {return this._error;} }]);return SimpleTaskResult;})(_Result3["default"]);exports["default"] = SimpleTaskResult;module.exports = exports["default"];
