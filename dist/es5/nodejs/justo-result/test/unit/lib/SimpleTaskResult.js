@@ -1,6 +1,6 @@
 //imports
 const SimpleTaskResult = require("../../../dist/es5/nodejs/justo-result").SimpleTaskResult;
-const MacroResult = require("../../../dist/es5/nodejs/justo-result").MacroResult;
+const CompositeTaskResult = require("../../../dist/es5/nodejs/justo-result").CompositeTaskResult;
 const ResultState = require("../../../dist/es5/nodejs/justo-result").ResultState;
 
 //suite
@@ -9,7 +9,9 @@ describe("SimpleTaskResult", function() {
 
   describe("#constructor()", function() {
     it("constructor(parent, title, task) - orphan", function() {
-      new SimpleTaskResult(undefined, "test", task).must.have({
+      var res = new SimpleTaskResult(undefined, "test", task);
+
+      res.must.have({
         parent: undefined,
         title: "test",
         task: task,
@@ -17,10 +19,15 @@ describe("SimpleTaskResult", function() {
         error: undefined,
         time: undefined
       });
+
+      res.isSimple().must.be.eq(true);
+      res.isComposite().must.be.eq(false);
     });
 
     it("constructor(parent, title, task, state) - orphan", function() {
-      new SimpleTaskResult(undefined, "test", task, ResultState.IGNORED).must.have({
+      var res = new SimpleTaskResult(undefined, "test", task, ResultState.IGNORED);
+
+      res.must.have({
         parent: undefined,
         title: "test",
         task: task,
@@ -28,10 +35,13 @@ describe("SimpleTaskResult", function() {
         error: undefined,
         time: undefined
       });
+
+      res.isSimple().must.be.eq(true);
+      res.isComposite().must.be.eq(false);
     });
 
     it("#constructor(parent, title, task) - child", function() {
-      const parent = new MacroResult(undefined, "parent", {});
+      const parent = new CompositeTaskResult(undefined, "parent", {});
       const child = new SimpleTaskResult(parent, "child", task);
 
       child.must.have({
@@ -42,10 +52,13 @@ describe("SimpleTaskResult", function() {
         error: undefined,
         time: undefined
       });
+
+      child.isSimple().must.be.eq(true);
+      child.isComposite().must.be.eq(false);
     });
 
     it("#constructor(parent, title, task, state) - child", function() {
-      const parent = new MacroResult(undefined, "parent", {});
+      const parent = new CompositeTaskResult(undefined, "parent", {});
       const child = new SimpleTaskResult(parent, "child", task, ResultState.IGNORED);
 
       child.must.have({
@@ -56,6 +69,9 @@ describe("SimpleTaskResult", function() {
         error: undefined,
         time: undefined
       });
+
+      child.isSimple().must.be.eq(true);
+      child.isComposite().must.be.eq(false);
     });
   });
 
@@ -65,7 +81,7 @@ describe("SimpleTaskResult", function() {
     });
 
     it("hasParent() - child", function() {
-      new SimpleTaskResult(new MacroResult(undefined, "parent", {}), "child", {}).hasParent().must.be.eq(true);
+      new SimpleTaskResult(new CompositeTaskResult(undefined, "parent", {}), "child", {}).hasParent().must.be.eq(true);
     });
   });
 
@@ -75,7 +91,7 @@ describe("SimpleTaskResult", function() {
     });
 
     it("level - child", function() {
-      const parent = new MacroResult(undefined, "parent", {});
+      const parent = new CompositeTaskResult(undefined, "parent", {});
       new SimpleTaskResult(parent, "child", {}).level.must.be.eq(2);
     });
   });

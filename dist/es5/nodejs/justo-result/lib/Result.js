@@ -30,7 +30,26 @@ Result = (function () {
 
 
     function hasParent() {
-      return !!this.parent;} }, { key: "level", get: 
+      return !!this.parent;} }, { key: "isSimple", value: 
+
+
+
+
+
+
+
+
+    function isSimple() {
+      throw new Error("Abstract method.");} }, { key: "isComposite", value: 
+
+
+
+
+
+
+
+    function isComposite() {
+      return !this.isSimple();} }, { key: "level", get: 
 
 
 

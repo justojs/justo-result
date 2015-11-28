@@ -3,7 +3,7 @@ const stub = require("justo-stub");
 const Result = require("../../../dist/es5/nodejs/justo-result").Result;
 const Results = require("../../../dist/es5/nodejs/justo-result").Results;
 const SimpleTaskResult = require("../../../dist/es5/nodejs/justo-result").SimpleTaskResult;
-const MacroResult = require("../../../dist/es5/nodejs/justo-result").MacroResult;
+const CompositeTaskResult = require("../../../dist/es5/nodejs/justo-result").CompositeTaskResult;
 const ResultState = require("../../../dist/es5/nodejs/justo-result").ResultState;
 
 //suite
@@ -100,11 +100,11 @@ describe("Results", function() {
         results.add(parent = new SimpleTaskResult(undefined, "test", {}));
         parent.setResult(ResultState.FAILED, undefined, 0, 5);
 
-        results.add(parent = new MacroResult(undefined, "test", {}));
+        results.add(parent = new CompositeTaskResult(undefined, "test", {}));
         child = new SimpleTaskResult(parent, "test", {});
         child.setResult(ResultState.IGNORED, undefined, 0, 5);
 
-        results.add(parent = new MacroResult(undefined, "test", {}));
+        results.add(parent = new CompositeTaskResult(undefined, "test", {}));
         child = new SimpleTaskResult(parent, "test", {});
         child.setResult(ResultState.OK, undefined, 0, 5);
         child = new SimpleTaskResult(parent, "test", {});

@@ -18,12 +18,10 @@ module.exports = function(grunt) {
         files: {
         	"build/es5/lib/index.js": "lib/index.js",
           "build/es5/lib/CompositeTaskResult.js": "lib/CompositeTaskResult.js",
-          "build/es5/lib/MacroResult.js": "lib/MacroResult.js",
           "build/es5/lib/Result.js": "lib/Result.js",
           "build/es5/lib/Results.js": "lib/Results.js",
           "build/es5/lib/ResultState.js": "lib/ResultState.js",
-          "build/es5/lib/SimpleTaskResult.js": "lib/SimpleTaskResult.js",
-          "build/es5/lib/WorkflowResult.js": "lib/WorkflowResult.js"
+          "build/es5/lib/SimpleTaskResult.js": "lib/SimpleTaskResult.js"
         }
       }
     },

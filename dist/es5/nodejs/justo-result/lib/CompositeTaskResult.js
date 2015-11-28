@@ -15,7 +15,14 @@ CompositeTaskResult = (function (_Result) {_inherits(CompositeTaskResult, _Resul
   function CompositeTaskResult(parent, title, task, state) {_classCallCheck(this, CompositeTaskResult);
     _get(Object.getPrototypeOf(CompositeTaskResult.prototype), "constructor", this).call(this, parent, title, task, state);
 
-    Object.defineProperty(this, "results", { value: new _Results2["default"]() });}_createClass(CompositeTaskResult, [{ key: "add", value: 
+    Object.defineProperty(this, "results", { value: new _Results2["default"]() });}_createClass(CompositeTaskResult, [{ key: "isSimple", value: 
+
+
+
+
+
+    function isSimple() {
+      return false;} }, { key: "add", value: 
 
 
 

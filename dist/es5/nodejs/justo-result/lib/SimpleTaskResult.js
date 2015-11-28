@@ -9,7 +9,14 @@ SimpleTaskResult = (function (_Result) {_inherits(SimpleTaskResult, _Result);
     _get(Object.getPrototypeOf(SimpleTaskResult.prototype), "constructor", this).call(this, parent, title, task, state);
 
     Object.defineProperty(this, "_time", { value: undefined, writable: true });
-    Object.defineProperty(this, "_error", { value: undefined, writable: true });}_createClass(SimpleTaskResult, [{ key: "setResult", value: 
+    Object.defineProperty(this, "_error", { value: undefined, writable: true });}_createClass(SimpleTaskResult, [{ key: "isSimple", value: 
+
+
+
+
+
+    function isSimple() {
+      return true;} }, { key: "setResult", value: 
 
 
 
