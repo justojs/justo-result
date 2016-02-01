@@ -11,12 +11,13 @@ module.exports = function(grunt) {
       options: {
         sourceMap: false,
         comments: false,
-        retainLines: true
+        retainLines: true,
+        presets: ["es2015"]
       },
 
       es5: {
         files: {
-        	"build/es5/lib/index.js": "lib/index.js",
+        	"build/es5/index.js": "index.js",
           "build/es5/lib/CompositeTaskResult.js": "lib/CompositeTaskResult.js",
           "build/es5/lib/Result.js": "lib/Result.js",
           "build/es5/lib/Results.js": "lib/Results.js",
@@ -35,9 +36,8 @@ module.exports = function(grunt) {
     copy: {
     	nodejs: {
     		files: [
-    		  {cwd: "build/es5/", src: ["lib/*.js"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
-    		  {src: ["package.json", "README.md"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
-    		  {src: ["test/**/*.*"], dest: "dist/es5/nodejs/<%= pkg.name %>", expand: true}
+    		  {cwd: "build/es5/", src: ["index.js", "lib/*.js"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
+    		  {src: ["package.json", "README.md"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true}
     		]
     	}
     },

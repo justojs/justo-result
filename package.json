@@ -1,18 +1,17 @@
 {
   "name": "justo-result",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "The Justo.js result library.",
   "homepage": "http://www.justojs.org",
-  "license": "MIT",
   "author": {
-    "name": "The Justo.js Development Group",
-    "email": "justojs.org@outlook.com",
+    "name": "Justo Labs",
+    "email": "justojs@justolabs.com",
     "url": "http://www.justojs.org"
   },
   "contributors": [
     {
       "name": "Raúl G. González",
-      "email": "raulggonzalezsw@outlook.com",
+      "email": "raulggonzalez@justojs.org",
       "url": ""
     }
   ],
@@ -22,38 +21,35 @@
   ],
   "bugs": {
     "url": "https://github.com/justojs/justo-result/issues",
-    "email": "justojs.org@outlook.com"
+    "email": "issues@justojs.org"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/justojs/justo-result.git"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=4.0.0",
+    "npm": ">=3.0.0"
   },
-  "dependencies": {
-
-  },
-  "peerDependencies": {
-
-  },
+  "dependencies": {},
+  "peerDependencies": {},
   "devDependencies": {
-    "justo-assert": "*",
-    "justo-stub": "*",
-    "mocha": "*",
-    "grunt": "^0.4.5",
-    "grunt-babel": "^5",
+    "babel-preset-es2015": "*",
+    "grunt": "*",
+    "grunt-babel": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-jshint": "*",
     "grunt-travis-lint": "*",
-    "grunt-mocha-test": "*"
+    "grunt-mocha-test": "*",
+    "justo-assert": "*",
+    "justo-stub": "*",
+    "mocha": "*"
   },
   "preferGlobal": false,
-  "main": "lib/index.js",
+  "main": "index.js",
   "files": [
-    "lib",
-    "test"
+    "lib"
   ],
   "scripts": {
     "test": "grunt test"
