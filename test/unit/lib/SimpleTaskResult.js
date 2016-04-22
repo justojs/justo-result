@@ -15,11 +15,11 @@ describe("SimpleTaskResult", function() {
         parent: undefined,
         title: "test",
         task: task,
-        _state: undefined,
+        ownState: undefined,
         state: undefined,
-        _error: undefined,
+        ownError: undefined,
         error: undefined,
-        _time: undefined,
+        ownTime: undefined,
         time: undefined
       });
 
@@ -34,11 +34,11 @@ describe("SimpleTaskResult", function() {
         parent: undefined,
         title: "test",
         task: task,
-        _state: ResultState.IGNORED,
+        ownState: ResultState.IGNORED,
         state: ResultState.IGNORED,
-        _error: undefined,
+        ownError: undefined,
         error: undefined,
-        _time: undefined,
+        ownTime: undefined,
         time: undefined
       });
 
@@ -54,11 +54,11 @@ describe("SimpleTaskResult", function() {
         parent: parent,
         title: "child",
         task: task,
-        _state: undefined,
+        ownState: undefined,
         state: undefined,
-        _error: undefined,
+        ownError: undefined,
         error: undefined,
-        _time: undefined,
+        ownTime: undefined,
         time: undefined
       });
 
@@ -74,11 +74,11 @@ describe("SimpleTaskResult", function() {
         parent: parent,
         title: "child",
         task: task,
-        _state: ResultState.IGNORED,
+        ownState: ResultState.IGNORED,
         state: ResultState.IGNORED,
-        _error: undefined,
+        ownError: undefined,
         error: undefined,
-        _time: undefined,
+        ownTime: undefined,
         time: undefined
       });
 
@@ -113,11 +113,11 @@ describe("SimpleTaskResult", function() {
       var res = new SimpleTaskResult(undefined, "test", task);
       res.setResult(ResultState.FAILED, new Error(), 4, 10);
       res.must.have({
-        _state: ResultState.FAILED,
+        ownState: ResultState.FAILED,
         state: ResultState.FAILED,
-        _error: new Error(),
+        ownError: new Error(),
         error: new Error(),
-        _time: 6,
+        ownTime: 6,
         time: 6
       });
     });

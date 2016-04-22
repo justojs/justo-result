@@ -16,11 +16,11 @@ describe("CompositeTaskResult", function() {
         parent: undefined,
         title: "test",
         task: macro,
-        _time: undefined,
+        ownTime: undefined,
         time: 0,
-        _state: undefined,
+        ownState: undefined,
         state: ResultState.OK,
-        _error: undefined,
+        ownError: undefined,
         error: undefined,
         count: 0,
         results: []
@@ -37,11 +37,11 @@ describe("CompositeTaskResult", function() {
         parent: undefined,
         title: "test",
         task: macro,
-        _state: ResultState.IGNORED,
+        ownState: ResultState.IGNORED,
         state: ResultState.IGNORED,
-        _time: undefined,
+        ownTime: undefined,
         time: 0,
-        _error: undefined,
+        ownError: undefined,
         error: undefined,
         count: 0,
         results: []
@@ -59,11 +59,11 @@ describe("CompositeTaskResult", function() {
         parent: parent,
         title: "test",
         task: macro,
-        _time: undefined,
+        ownTime: undefined,
         time: 0,
-        _state: undefined,
+        ownState: undefined,
         state: ResultState.OK,
-        _error: undefined,
+        ownError: undefined,
         error: undefined,
         count: 0,
         results: []
@@ -81,11 +81,11 @@ describe("CompositeTaskResult", function() {
         parent: parent,
         title: "test",
         task: macro,
-        _state: ResultState.IGNORED,
+        ownState: ResultState.IGNORED,
         state: ResultState.IGNORED,
-        _time: undefined,
+        ownTime: undefined,
         time: 0,
-        _error: undefined,
+        ownError: undefined,
         error: undefined,
         count: 0,
         results: []
@@ -147,11 +147,11 @@ describe("CompositeTaskResult", function() {
       var res = new CompositeTaskResult(undefined, "test", {});
       res.setResult(ResultState.FAILED, new Error(), 4, 10);
       res.must.have({
-        _state: ResultState.FAILED,
+        ownState: ResultState.FAILED,
         state: ResultState.FAILED,
-        _error: new Error(),
+        ownError: new Error(),
         error: new Error(),
-        _time: 6,
+        ownTime: 6,
         time: 6
       });
     });

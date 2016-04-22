@@ -62,8 +62,8 @@ CompositeTaskResult = function (_Result) {_inherits(CompositeTaskResult, _Result
 
 
     state) {
-      if (state === _ResultState2.default.IGNORED && this._state === _ResultState2.default.IGNORED) return 1;else 
-      return this.results.getNumberOf(state);} }, { key: "state", get: function get() {return this._state || this.results.state;} }, { key: "error", get: function get() {return this._error || this.results.error;} }, { key: "time", get: function get() {return this._time || this.results.time;} }, { key: "count", get: function get() 
+      if (state === _ResultState2.default.IGNORED && this.ownState === _ResultState2.default.IGNORED) return 1;else 
+      return this.results.getNumberOf(state);} }, { key: "state", get: function get() {return this.ownState || this.results.state;} }, { key: "error", get: function get() {return this.ownError || this.results.error;} }, { key: "time", get: function get() {return this.ownTime || this.results.time;} }, { key: "count", get: function get() 
 
 
 
