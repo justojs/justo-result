@@ -1,6 +1,6 @@
 {
   "name": "justo-result",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "The Justo.js result library.",
   "homepage": "http://www.justojs.org",
   "author": {
@@ -28,8 +28,8 @@
     "url": "https://github.com/justojs/justo-result.git"
   },
   "engines": {
-    "node": ">=4.0.0",
-    "npm": ">=3.0.0"
+    "node": ">=5.0.0",
+    "npm": ">=4.0.0"
   },
   "dependencies": {},
   "peerDependencies": {},

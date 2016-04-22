@@ -15,8 +15,11 @@ describe("SimpleTaskResult", function() {
         parent: undefined,
         title: "test",
         task: task,
+        _state: undefined,
         state: undefined,
+        _error: undefined,
         error: undefined,
+        _time: undefined,
         time: undefined
       });
 
@@ -31,8 +34,11 @@ describe("SimpleTaskResult", function() {
         parent: undefined,
         title: "test",
         task: task,
+        _state: ResultState.IGNORED,
         state: ResultState.IGNORED,
+        _error: undefined,
         error: undefined,
+        _time: undefined,
         time: undefined
       });
 
@@ -48,8 +54,11 @@ describe("SimpleTaskResult", function() {
         parent: parent,
         title: "child",
         task: task,
+        _state: undefined,
         state: undefined,
+        _error: undefined,
         error: undefined,
+        _time: undefined,
         time: undefined
       });
 
@@ -65,8 +74,11 @@ describe("SimpleTaskResult", function() {
         parent: parent,
         title: "child",
         task: task,
+        _state: ResultState.IGNORED,
         state: ResultState.IGNORED,
+        _error: undefined,
         error: undefined,
+        _time: undefined,
         time: undefined
       });
 
@@ -100,25 +112,14 @@ describe("SimpleTaskResult", function() {
     it("setResult()", function() {
       var res = new SimpleTaskResult(undefined, "test", task);
       res.setResult(ResultState.FAILED, new Error(), 4, 10);
-      res.state.must.be.same(ResultState.FAILED);
-      res.error.must.be.eq(new Error());
-      res.time.must.be.eq(6);
-    });
-  });
-
-  describe("#time", function() {
-    it("time", function() {
-      const res = new SimpleTaskResult(undefined, "test", {});
-      res.setResult(ResultState.OK, undefined, 0, 10);
-      res.time.must.be.eq(10);
-    });
-  });
-
-  describe("#state", function() {
-    it("state - own", function() {
-      const res = new SimpleTaskResult(undefined, "test", {});
-      res.setResult(ResultState.OK, undefined, 0, 10);
-      res.state.must.be.same(ResultState.OK);
+      res.must.have({
+        _state: ResultState.FAILED,
+        state: ResultState.FAILED,
+        _error: new Error(),
+        error: new Error(),
+        _time: 6,
+        time: 6
+      });
     });
   });
 });

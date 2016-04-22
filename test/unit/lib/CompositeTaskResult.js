@@ -6,16 +6,22 @@ const ResultState = require("../../../dist/es5/nodejs/justo-result").ResultState
 //suite
 describe("CompositeTaskResult", function() {
   var macro = {};
+  var simple = {};
 
   describe("#constructor()", function() {
-    it("constructor(parent, title, macro) - Orphan result", function() {
+    it("constructor(parent, title, macro) - orphan", function() {
       var res = new CompositeTaskResult(undefined, "test", macro);
 
       res.must.have({
         parent: undefined,
         title: "test",
         task: macro,
+        _time: undefined,
+        time: 0,
+        _state: undefined,
         state: ResultState.OK,
+        _error: undefined,
+        error: undefined,
         count: 0,
         results: []
       });
@@ -24,14 +30,19 @@ describe("CompositeTaskResult", function() {
       res.isComposite().must.be.eq(true);
     });
 
-    it("constructor(parent, title, macro, state) - Orphan result", function() {
+    it("constructor(parent, title, macro, state) - orphan", function() {
       var res = new CompositeTaskResult(undefined, "test", macro, ResultState.IGNORED);
 
       res.must.have({
         parent: undefined,
         title: "test",
         task: macro,
+        _state: ResultState.IGNORED,
         state: ResultState.IGNORED,
+        _time: undefined,
+        time: 0,
+        _error: undefined,
+        error: undefined,
         count: 0,
         results: []
       });
@@ -40,38 +51,48 @@ describe("CompositeTaskResult", function() {
       res.isComposite().must.be.eq(true);
     });
 
-    it("constructor(parent, title, macro) - Child result", function() {
-      var parent = new CompositeTaskResult(undefined, "parent", macro);
-      var child = new CompositeTaskResult(parent, "child", macro);
+    it("constructor(parent, title, macro) - child", function() {
+      const parent = new CompositeTaskResult(undefined, "parent", {});
+      var res = new CompositeTaskResult(parent, "test", macro);
 
-      child.must.have({
+      res.must.have({
         parent: parent,
-        title: "child",
+        title: "test",
         task: macro,
+        _time: undefined,
+        time: 0,
+        _state: undefined,
         state: ResultState.OK,
+        _error: undefined,
+        error: undefined,
         count: 0,
         results: []
       });
 
-      child.isSimple().must.be.eq(false);
-      child.isComposite().must.be.eq(true);
+      res.isSimple().must.be.eq(false);
+      res.isComposite().must.be.eq(true);
     });
 
-    it("constructor(parent, title, macro, state) - Child result", function() {
-      var parent = new CompositeTaskResult(undefined, "parent", macro);
-      var child = new CompositeTaskResult(parent, "child", macro, ResultState.IGNORED);
+    it("constructor(parent, title, macro, state) - child", function() {
+      const parent = new CompositeTaskResult(undefined, "parent", {});
+      var res = new CompositeTaskResult(parent, "test", macro, ResultState.IGNORED);
 
-      child.must.have({
+      res.must.have({
         parent: parent,
-        title: "child",
+        title: "test",
         task: macro,
+        _state: ResultState.IGNORED,
         state: ResultState.IGNORED,
+        _time: undefined,
+        time: 0,
+        _error: undefined,
+        error: undefined,
         count: 0,
         results: []
       });
 
-      child.isSimple().must.be.eq(false);
-      child.isComposite().must.be.eq(true);
+      res.isSimple().must.be.eq(false);
+      res.isComposite().must.be.eq(true);
     });
   });
 
@@ -118,6 +139,37 @@ describe("CompositeTaskResult", function() {
       res.getNumberOf(ResultState.OK).must.be.eq(0);
       res.getNumberOf(ResultState.FAILED).must.be.eq(0);
       res.getNumberOf(ResultState.IGNORED).must.be.eq(1);
+    });
+  });
+
+  describe("#setResult()", function() {
+    it("setResult()", function() {
+      var res = new CompositeTaskResult(undefined, "test", {});
+      res.setResult(ResultState.FAILED, new Error(), 4, 10);
+      res.must.have({
+        _state: ResultState.FAILED,
+        state: ResultState.FAILED,
+        _error: new Error(),
+        error: new Error(),
+        _time: 6,
+        time: 6
+      });
+    });
+  });
+
+  describe("#state", function() {
+    it("state - own", function() {
+      var parent = new CompositeTaskResult(undefined, "parent", macro, ResultState.FAILED);
+      var child = new CompositeTaskResult(parent, "child", simple, ResultState.OK);
+
+      parent.state.must.be.same(ResultState.FAILED);
+    });
+
+    it("state - child", function() {
+      var parent = new CompositeTaskResult(undefined, "parent", macro);
+      var child = new CompositeTaskResult(parent, "child", simple, ResultState.OK);
+
+      parent.state.must.be.same(ResultState.OK);
     });
   });
 });
