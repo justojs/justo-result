@@ -20,3 +20,4 @@ ResultState = function () {
 Object.defineProperty(ResultState, "OK", { value: new ResultState("OK", 1), enumerable: true });
 Object.defineProperty(ResultState, "FAILED", { value: new ResultState("FAILED", 2), enumerable: true });
 Object.defineProperty(ResultState, "IGNORED", { value: new ResultState("IGNORED", 3), enumerable: true });
+Object.defineProperty(ResultState, "RUNNING", { value: new ResultState("RUNNING", 4), enumerable: true });
